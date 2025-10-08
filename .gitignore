@@ -1,0 +1,11 @@
+*.log
+*.tmp
+*.bak
+*.tar.gz
+*.zip
+*.7z
+dist/
+build/
+node_modules/
+bin/
+obj/
