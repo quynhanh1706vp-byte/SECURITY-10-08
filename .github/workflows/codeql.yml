@@ -4,8 +4,8 @@ on:
   push: { branches: [ main ] }
   pull_request: { branches: [ main ] }
   schedule:
-    - cron: '0 3 * * 1,4'   # quét định kỳ
-  workflow_dispatch: {}      # cho phép Run workflow thủ công
+    - cron: '0 3 * * 1,4'
+  workflow_dispatch: {}
 
 jobs:
   analyze:
@@ -25,7 +25,6 @@ jobs:
         fetch-depth: 0
         submodules: recursive
 
-    # C# cần SDK để build
     - if: matrix.language == 'csharp'
       uses: actions/setup-dotnet@v4
       with:
@@ -33,18 +32,16 @@ jobs:
           8.0.x
           7.0.x
 
-    # Khởi tạo CodeQL + bật security-and-quality
     - uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         queries: security-and-quality
         build-mode: autobuild
 
-    # Thử autobuild cho C#
     - if: matrix.language == 'csharp'
       uses: github/codeql-action/autobuild@v3
 
-    # ---- Nếu autobuild FAIL: xóa block autobuild ở trên và UNCOMMENT 3 bước dưới ----
+    # ===== Nếu autobuild fail, hãy xóa block autobuild ở trên và UNCOMMENT 3 bước dưới =====
     # - if: matrix.language == 'csharp'
     #   name: Restore & Build (manual)
     #   run: |
@@ -56,9 +53,8 @@ jobs:
     #     languages: csharp
     #     queries: security-and-quality
     #     build-mode: manual
-    # -------------------------------------------------------------------------------
+    # ====================================================================
 
-    # (tuỳ chọn) build JS/TS nếu repo có
     - if: matrix.language == 'javascript' || matrix.language == 'typescript'
       run: |
         if [ -f package.json ]; then
