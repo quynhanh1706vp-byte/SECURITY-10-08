@@ -33,3 +33,4 @@ _reports/
 # OS/editor
 .DS_Store
 Thumbs.db
+*.bak
