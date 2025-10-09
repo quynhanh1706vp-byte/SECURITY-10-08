@@ -1,11 +1,28 @@
-*.log
-*.tmp
-*.bak
-*.tar.gz
-*.zip
-*.7z
-dist/
-build/
+# build & deps
 node_modules/
 bin/
 obj/
+dist/
+
+# installers, images, archives (rất nặng)
+**/install/
+**/images/
+*.tgz
+*.tar.gz
+*.zip
+*.7z
+
+# reports
+_reports/
+*.sarif
+*.json
+
+# binaries
+*.dll
+*.so
+*.dylib
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.swp
