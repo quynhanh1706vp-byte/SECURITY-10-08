@@ -1,0 +1,72 @@
+name: CodeQL
+
+on:
+  push: { branches: [ main ] }
+  pull_request: { branches: [ main ] }
+  schedule:
+    - cron: '0 3 * * 1,4'   # quét định kỳ
+  workflow_dispatch: {}      # cho phép Run workflow thủ công
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'csharp', 'javascript', 'typescript' ]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    # C# cần SDK để build
+    - if: matrix.language == 'csharp'
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          7.0.x
+
+    # Khởi tạo CodeQL + bật security-and-quality
+    - uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        queries: security-and-quality
+        build-mode: autobuild
+
+    # Thử autobuild cho C#
+    - if: matrix.language == 'csharp'
+      uses: github/codeql-action/autobuild@v3
+
+    # ---- Nếu autobuild FAIL: xóa block autobuild ở trên và UNCOMMENT 3 bước dưới ----
+    # - if: matrix.language == 'csharp'
+    #   name: Restore & Build (manual)
+    #   run: |
+    #     dotnet restore src/dmpw_linux_install_v3/code_unpacked/DeMasterProCloud.sln
+    #     dotnet build   src/dmpw_linux_install_v3/code_unpacked/DeMasterProCloud.sln -c Release --no-restore /p:UseSharedCompilation=false
+    # - if: matrix.language == 'csharp'
+    #   uses: github/codeql-action/init@v3
+    #   with:
+    #     languages: csharp
+    #     queries: security-and-quality
+    #     build-mode: manual
+    # -------------------------------------------------------------------------------
+
+    # (tuỳ chọn) build JS/TS nếu repo có
+    - if: matrix.language == 'javascript' || matrix.language == 'typescript'
+      run: |
+        if [ -f package.json ]; then
+          corepack enable || true
+          pnpm install || npm ci
+          npm run build --if-present
+        fi
+
+    - uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{ matrix.language }}"
