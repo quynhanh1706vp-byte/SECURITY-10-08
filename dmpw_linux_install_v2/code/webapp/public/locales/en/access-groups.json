@@ -1,0 +1,25 @@
+{
+  "titles": {
+    "create": "Add Access Group",
+    "edit": "Edit Access Group"
+  },
+  "deleteConfirm": {
+    "title": "Delete Access Group",
+    "message": "Are you sure you want to delete this access group?"
+  },
+  "multipleDeleteConfirm": {
+    "title": "Delete Multiple Access Groups",
+    "message": "Are you sure you want to delete {count} access groups?"
+  },
+  "unassign-users": {
+    "multipleDeleteConfirm": {
+      "title": "Remove Users from Access Group",
+      "message": "Are you sure you want to remove {count} users from this access group?"
+    }
+  },
+  "form": {
+    "validation": {
+      "isDefault": "This access group is set as default"
+    }
+  }
+}

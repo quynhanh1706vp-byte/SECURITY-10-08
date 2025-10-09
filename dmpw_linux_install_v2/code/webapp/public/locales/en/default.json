@@ -1,0 +1,83 @@
+{
+  "ID": "ID",
+  "actions": {
+    "list": "List",
+    "create": "Create",
+    "edit": "Edit",
+    "show": "Show",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "buttons": {
+    "actions": "Actions",
+    "create": "Create",
+    "save": "Save",
+    "logout": "Logout",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "confirm": "Are you sure?",
+    "filter": "Filter",
+    "clear": "Clear",
+    "refresh": "Refresh",
+    "show": "Show",
+    "undo": "Undo",
+    "import": "Import",
+    "clone": "Clone",
+    "notAccessTitle": "You don't have permission to access",
+    "restart": "Restart",
+    "reload": "Reload",
+    "close": "Close"
+  },
+  "pagination": {
+    "showTotal": "{from}-{to} of {total, plural, =1 {# item} other {# items}}"
+  },
+  "validation": {
+    "required": "{field} is required",
+    "minLength": "Minimum length is {min} characters",
+    "maxLength": "Maximum length is {max} characters",
+    "email": {
+      "required": "Please enter email",
+      "invalid": "Invalid email format"
+    },
+    "password": {
+      "required": "Password is required",
+      "minLength": "Password must be at least 8 characters",
+      "requireUppercase": "Password must contain at least 1 uppercase letter",
+      "requireLowercase": "Password must contain at least 1 lowercase letter",
+      "requireNumber": "Password must contain at least 1 number",
+      "requireSpecial": "Password must contain at least 1 special character"
+    },
+    "file": {
+      "tooLarge": "File size too large",
+      "invalidType": "Invalid file type"
+    },
+    "timeRange": {
+      "invalid": "Invalid time range"
+    }
+  },
+  "notifications": {
+    "success": "Success",
+    "error": "Error",
+    "createSuccess": "Created successfully",
+    "createError": "Creation failed",
+    "editSuccess": "Edited successfully",
+    "editError": "Edit failed",
+    "deleteSuccess": "Deleted successfully",
+    "deleteError": "Deletion failed"
+  },
+  "table": {
+    "actions": "Actions",
+    "edit": "Edit"
+  },
+  "error": {},
+  "pages": {
+    "home": "Home",
+    "error": {
+      "403": "Sorry, you do not have permission to access this system. Please contact your administrator for access.",
+      "404": "Sorry, the page you are looking for does not exist.",
+      "backHome": "Go Back"
+    }
+  }
+}
