@@ -11,18 +11,25 @@ dist/
 *.tar.gz
 *.zip
 *.7z
+*.map
+*.min.js
+*.bundle.js
 
 # reports
 _reports/
 *.sarif
 *.json
 
-# binaries
+# binaries & temps & secrets
 *.dll
 *.so
 *.dylib
+*.lib
+*.exp
+*.swp
+*.icloud
+*.pem
 
 # OS/editor
 .DS_Store
 Thumbs.db
-*.swp
