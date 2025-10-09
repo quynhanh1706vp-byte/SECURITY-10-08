@@ -357,6 +357,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
     <Reference Include="AutoMapper">
       <HintPath>..\..\..\..\..\.nuget\packages\automapper\13.0.1\lib\net6.0\AutoMapper.dll</HintPath>
     </Reference>
