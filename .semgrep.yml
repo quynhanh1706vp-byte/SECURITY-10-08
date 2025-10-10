@@ -1,0 +1,7 @@
+rules:
+  - id: custom-xss-dom
+    patterns:
+      - pattern: document.write(...)
+    message: Potential DOM XSS
+    severity: WARNING
+    languages: [javascript, typescript]

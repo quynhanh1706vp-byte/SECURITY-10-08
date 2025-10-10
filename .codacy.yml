@@ -1,0 +1,50 @@
+engines:
+  semgrep:
+    enabled: true
+    # Dùng ruleset public mạnh tay
+    patterns:
+      - id: p/security-audit
+      - id: p/secrets
+      - id: p/owasp-top-ten
+      - id: p/r2c-best-practices
+  checkov:
+    enabled: true
+    # Quét IaC: Terraform, Cloud (nếu có)
+    patterns:
+      - id: CKV2_AZURE_*   # Azure
+      - id: CKV_AWS_*      # AWS
+      - id: CKV_GCP_*      # GCP
+      - id: CKV_K8S_*      # Kubernetes
+  hadolint:
+    enabled: true
+  eslint:
+    enabled: true
+  pylint:
+    enabled: true
+  ruff:
+    enabled: true
+  prospector:
+    enabled: false   # tránh trùng với pylint/ruff, bật nếu bạn muốn
+  spectral:
+    enabled: true
+  markdownlint:
+    enabled: true
+  sonarcsharp:
+    enabled: true
+
+# Giới hạn/loại trừ đường dẫn để quét đúng code và tránh noise
+excludePaths:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/bin/**"
+  - "**/obj/**"
+  - "**/.git/**"
+  - "**/*.Designer.cs"     # các file sinh tự động
+  - "dmpw_linux_install_v3/**/code_unpacked/**"  # thư mục unpack nếu không dùng
+
+# Nếu repo có code nằm khá sâu, khai báo include để chắc chắn quét tới:
+# includePaths:
+#   - "src/**"
+#   - "dmpw_linux_install_v2/**"
+#   - "dmpw_linux_install_v3/**"
