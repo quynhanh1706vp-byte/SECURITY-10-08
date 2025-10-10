@@ -15,22 +15,17 @@ engines:
     enabled: true
   markdownlint:
     enabled: true
-  # pmd và trivy đang lỗi -> tắt
   pmd:
     enabled: false
   trivy:
     enabled: false
-
 exclude_paths:
-  # tránh crash do encoding & vendor
-  - "src/dmpw_linux_install_v3/code_unpacked/**"
-  - "**/Resources/*.Designer.cs"
-  # bỏ rules nội bộ/terraform mẫu gây parse error
-  - "_rules/**"
-  # đồ build / deps / tối ưu
-  - "**/node_modules/**"
-  - "**/bin/**"
-  - "**/obj/**"
-  - "**/*.min.*"
-  # bỏ file >1MB để semgrep không skip lung tung
-  - "**/*.lock"
+- '**/*.lock'
+- '**/*.min.*'
+- '**/Resources/*.Designer.cs'
+- '**/bin/**'
+- '**/node_modules/**'
+- '**/obj/**'
+- _rules/**
+- src/dmpw_linux_install_v3/code_unpacked/**
+- src/dmpw_linux_install_v4/code_unpacked/**
