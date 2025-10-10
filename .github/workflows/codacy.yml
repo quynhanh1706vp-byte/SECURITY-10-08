@@ -22,7 +22,6 @@ jobs:
               --verbose \
               --format sarif \
               --output results.sarif \
-              --allow-dirty \
               --gh-code-scanning-compat \
               \
               # CHỈ chạy các tool dưới, KHÔNG có PMD
