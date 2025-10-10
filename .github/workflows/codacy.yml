@@ -19,12 +19,11 @@ jobs:
     name: Codacy Security Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code (full history để tránh git 128)
+      - name: Checkout code (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Codacy Analysis CLI chạy các tool qua Docker; action này đã lo phần đó
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
         with:
@@ -33,10 +32,12 @@ jobs:
           output: results.sarif
           format: sarif
           gh-code-scanning-compat: true
-          # Luôn tạo SARIF kể cả có issue (để bước upload luôn chạy)
+          # Luôn tạo SARIF (kể cả có nhiều issue)
           max-allowed-issues: 2147483647
 
+      # Luôn cố upload SARIF kể cả khi step trên fail
       - name: Upload SARIF results file
+        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif

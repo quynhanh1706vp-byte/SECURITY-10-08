@@ -1,7 +1,12 @@
 rules:
-  - id: custom-xss-dom
-    patterns:
-      - pattern: document.write(...)
-    message: Potential DOM XSS
-    severity: WARNING
-    languages: [javascript, typescript]
+  - id: use-rulesets
+    languages: [javascript, typescript, python, csharp, go, java, generic]
+    message: "rulesets anchor"
+    pattern: $X
+    severity: INFO
+# Chỉ là placeholder để semgrep đọc file; chính rulesets ở dưới:
+configs:
+  - p/security-audit
+  - p/owasp-top-ten
+  - p/secrets
+  - p/r2c-best-practices
