@@ -1,10 +1,36 @@
-tools:
+engines:
+  semgrep:
+    enabled: true
+  spectral:
+    enabled: true
+  checkov:
+    enabled: true
+  hadolint:
+    enabled: true
+  eslint:
+    enabled: true
+  pylint:
+    enabled: true
+  ruff:
+    enabled: true
+  markdownlint:
+    enabled: true
+  # pmd và trivy đang lỗi -> tắt
   pmd:
     enabled: false
-pathIgnore:
+  trivy:
+    enabled: false
+
+exclude_paths:
+  # tránh crash do encoding & vendor
+  - "src/dmpw_linux_install_v3/code_unpacked/**"
+  - "**/Resources/*.Designer.cs"
+  # bỏ rules nội bộ/terraform mẫu gây parse error
   - "_rules/**"
-  - ".git/**"
-  - ".github/**"
+  # đồ build / deps / tối ưu
   - "**/node_modules/**"
   - "**/bin/**"
   - "**/obj/**"
+  - "**/*.min.*"
+  # bỏ file >1MB để semgrep không skip lung tung
+  - "**/*.lock"
