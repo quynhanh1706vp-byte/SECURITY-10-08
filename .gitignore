@@ -34,3 +34,12 @@ _reports/
 .DS_Store
 Thumbs.db
 *.bak
+alerts.csv
+code_scanning_alerts.csv
+codacy-cli.log
+results.sarif.gz
+sarif_ids.txt
+sarif_split/
+scan_and_upload.log
+scan_and_upload.sh
+semgrep-run-two.sh
