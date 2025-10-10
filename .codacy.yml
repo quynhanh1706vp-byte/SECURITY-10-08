@@ -1,33 +1,10 @@
 tools:
-  semgrep:
-    enabled: true
-    configuration:
-      files:
-        - .semgrep.yml
-  eslint:
-    enabled: true
-  pylint:
-    enabled: true
-  ruff:
-    enabled: true
-  spectral:
-    enabled: true
-  hadolint:
-    enabled: true
-  checkov:
-    enabled: true
-    # Quét IaC: chọn một số họ rule phổ biến (không đụng trivy)
-    patterns:
-      - id: CKV_AWS_*
-      - id: CKV_GCP_*
-      - id: CKV_AZURE_*
-      - id: CKV_K8S_*
-
-# Chặn các thư mục dễ gây lỗi parser / không cần quét
-exclude_paths:
-  - "node_modules/**"
-  - "dist/**"
-  - "build/**"
-  - "vendor/**"
+  pmd:
+    enabled: false
+pathIgnore:
   - "_rules/**"
-  - "**/*.min.js"
+  - ".git/**"
+  - ".github/**"
+  - "**/node_modules/**"
+  - "**/bin/**"
+  - "**/obj/**"
